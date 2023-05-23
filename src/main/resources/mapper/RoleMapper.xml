@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.satokendemospringboot.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.satokendemospringboot.entity.Role">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="roleCode" column="role_code" jdbcType="VARCHAR"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,role_code,role_name
+    </sql>
+
+    <select id="getRoles" resultType="java.lang.String">
+        SELECT
+            r.role_code
+        FROM
+            tb_user u
+                LEFT JOIN tb_user_role ur ON ur.user_id = u.id
+                LEFT JOIN tb_role r ON r.id = ur.role_id
+        WHERE
+            u.id = #{userId};
+    </select>
+</mapper>
