@@ -7,8 +7,8 @@ package com.example.satokendemospringboot.security.constants;
  */
 public interface SecurityConstants {
 
-    String LOGIN_SUCCESS = "0";
-
-    String LOGIN_FAIL = "1";
-
+    /**
+     * 管理员ID
+     */
+    Long ADMIN_ID = 1L;
 }

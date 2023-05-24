@@ -1,7 +1,9 @@
 package com.example.satokendemospringboot.security.config;
 
 import cn.dev33.satoken.interceptor.SaInterceptor;
+import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
+import com.example.satokendemospringboot.security.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,6 +22,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
 
     /**
      * sa-token 拦截器
+     *
      * @param registry
      */
     @Override

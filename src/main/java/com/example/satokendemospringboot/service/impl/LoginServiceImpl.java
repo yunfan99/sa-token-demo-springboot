@@ -4,16 +4,19 @@ import cn.dev33.satoken.exception.SaTokenException;
 import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.satokendemospringboot.entity.Menu;
 import com.example.satokendemospringboot.entity.Role;
 import com.example.satokendemospringboot.entity.User;
 import com.example.satokendemospringboot.entity.dto.LoginDto;
 import com.example.satokendemospringboot.entity.vo.LoginVo;
 import com.example.satokendemospringboot.exception.NotHaveUserException;
-import com.example.satokendemospringboot.mapper.PermissionsMapper;
+import com.example.satokendemospringboot.exception.NotNullException;
+import com.example.satokendemospringboot.mapper.MenuMapper;
 import com.example.satokendemospringboot.mapper.RoleMapper;
 import com.example.satokendemospringboot.mapper.UserMapper;
+import com.example.satokendemospringboot.security.constants.SecurityConstants;
 import com.example.satokendemospringboot.security.domain.LoginUser;
 import com.example.satokendemospringboot.security.enums.DeviceType;
 import com.example.satokendemospringboot.security.utils.SecurityUtils;
@@ -22,7 +25,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author 饕餮者也
@@ -32,19 +38,27 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements LoginService {
+public class LoginServiceImpl implements LoginService {
+
+    private final UserMapper userMapper;
 
     private final RoleMapper roleMapper;
 
-    private final PermissionsMapper permissionsMapper;
+    private final MenuMapper menuMapper;
 
     /**
      * 登录
+     *
      * @param loginDto
      * @return
      */
     @Override
     public LoginVo login(LoginDto loginDto) {
+        if (StrUtil.isBlank(loginDto.getUsername())) {
+            throw new NotNullException("用户名必填");
+        } else if (StrUtil.isBlank(loginDto.getPassword())) {
+            throw new NotNullException("密码必填");
+        }
         User user = loadUserByUsername(loginDto.getUsername());
         if (!BCrypt.checkpw(loginDto.getPassword(), user.getPassword())) {
             throw new SaTokenException("账号或密码不正确");
@@ -63,17 +77,27 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements L
 
     /**
      * 构建用户信息
+     *
      * @param user
      * @return
      */
     private LoginUser buildLoginUser(User user) {
-        LoginUser loginUser =new LoginUser();
+        LoginUser loginUser = new LoginUser();
 
         loginUser.setUserId(user.getId());
         loginUser.setUsername(user.getUsername());
 
-        Set<String> roles = roleMapper.getRoles(user.getId());
-        Set<String> perms = permissionsMapper.getPerms(user.getId());
+        Set<Role> roles = roleMapper.getRoles(user.getId());
+
+        Set<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toSet());
+        Set<Menu> perms;
+        if (roleIds.contains(SecurityConstants.ADMIN_ID)) {
+            List<Menu> menus = menuMapper.selectList(null);
+            perms = new HashSet<>(menus);
+        } else {
+            perms = menuMapper.getPerms(roleIds);
+        }
+
         log.info("roles: {}", roles);
         log.info("perms: {}", perms);
 
@@ -85,15 +109,16 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements L
 
     /**
      * 通过账号登录
+     *
      * @param username
      * @return
      */
     private User loadUserByUsername(String username) {
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUsername, username);
-        User user = this.baseMapper.selectOne(wrapper);
+        User user = userMapper.selectOne(wrapper);
         if (ObjectUtil.isEmpty(user)) {
-            throw new NotHaveUserException("登录用户：" + username + " 不存在.");
+            throw new NotHaveUserException("不存在" + username + "用户");
         }
         return user;
     }

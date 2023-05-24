@@ -1,5 +1,7 @@
 package com.example.satokendemospringboot.security.domain;
 
+import com.example.satokendemospringboot.entity.Menu;
+import com.example.satokendemospringboot.entity.Role;
 import lombok.Data;
 
 import java.io.Serial;
@@ -27,9 +29,9 @@ public class LoginUser implements Serializable {
     private String name;
 
     // 角色集合
-    private Set<String> roles;
+    private Set<Role> roles;
 
     // 权限集合
-    private Set<String> permissions;
+    private Set<Menu> permissions;
 
 }

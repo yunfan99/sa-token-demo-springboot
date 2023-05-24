@@ -1,6 +1,6 @@
 package com.example.satokendemospringboot.mapper;
 
-import com.example.satokendemospringboot.entity.UserPermissions;
+import com.example.satokendemospringboot.entity.RoleMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 */
 @Mapper
 @Repository
-public interface RolePermissionsMapper extends BaseMapper<UserPermissions> {
+public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
 
 }
 

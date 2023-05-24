@@ -14,14 +14,16 @@
         id,role_code,role_name
     </sql>
 
-    <select id="getRoles" resultType="java.lang.String">
+    <select id="getRoles" resultType="com.example.satokendemospringboot.entity.Role">
         SELECT
-            r.role_code
+            r.id,
+            r.role_code,
+            r.role_name
         FROM
             tb_user u
                 LEFT JOIN tb_user_role ur ON ur.user_id = u.id
                 LEFT JOIN tb_role r ON r.id = ur.role_id
         WHERE
-            u.id = #{userId};
+            u.id = #{id};
     </select>
 </mapper>

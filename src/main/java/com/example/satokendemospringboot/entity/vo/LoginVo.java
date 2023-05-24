@@ -1,7 +1,5 @@
 package com.example.satokendemospringboot.entity.vo;
 
-import cn.hutool.http.HttpStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,10 +14,14 @@ public class LoginVo implements Serializable {
 
     private static final Long serialVersionUID = 1L;
 
-    @JsonProperty("access_token")
+    /**
+     * 访问令牌
+     */
     private String accessToken;
 
-    @JsonProperty("refresh_token")
+    /**
+     * 刷新令牌
+     */
     private String refreshToken;
 
 }

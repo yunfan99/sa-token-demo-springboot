@@ -6,12 +6,18 @@ import java.io.Serializable;
 
 /**
  * @author 饕餮者也
- * @date 2023-05-23 22:28
- * @description: <p>登录信息</p>
+ * @date 2023-05-24 13:22
+ * @description: <p>用户查询信息</p>
  */
 @Data
-public class LoginDto implements Serializable {
+public class UserListDto implements Serializable {
+
     private static final Long serialVersionUID = 1L;
+
+    /**
+     * 姓名
+     */
+    private String name;
 
     /**
      * 用户名
@@ -19,8 +25,12 @@ public class LoginDto implements Serializable {
     private String username;
 
     /**
-     * 密码
+     * 性别
      */
-    private String password;
+    private Integer gender;
 
+    /**
+     * 年龄
+     */
+    private Integer age;
 }

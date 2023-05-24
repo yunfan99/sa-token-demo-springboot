@@ -2,6 +2,9 @@ package com.example.satokendemospringboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.satokendemospringboot.entity.User;
+import com.example.satokendemospringboot.entity.dto.UserAddDto;
+import com.example.satokendemospringboot.entity.dto.UserListDto;
+import com.example.satokendemospringboot.entity.vo.UserListVo;
 
 import java.util.List;
 
@@ -12,4 +15,19 @@ import java.util.List;
  */
 public interface UserService extends IService<User> {
 
+    /**
+     * 用户列表
+     *
+     * @param params
+     * @return
+     */
+    List<UserListVo> userList(UserListDto params);
+
+    /**
+     * 添加用户
+     *
+     * @param userAddDto
+     * @return
+     */
+    boolean addUser(UserAddDto userAddDto);
 }

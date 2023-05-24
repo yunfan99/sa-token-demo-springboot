@@ -8,11 +8,13 @@ import lombok.Data;
 /**
  * @author 饕餮者也
  * @date 2023-05-10 12:12
- * @description: <p></p>
+ * @description: <p>角色 - 权限</p>
  */
-@TableName("tb_role_permissions")
+@TableName("tb_role_menu")
 @Data
-public class UserPermissions {
+public class RoleMenu {
+
+    private static final Long serialVersionUID = 1L;
 
     /**
      * 主键
@@ -28,5 +30,5 @@ public class UserPermissions {
     /**
      * 权限id
      */
-    private Long permissionId;
+    private Long menuId;
 }

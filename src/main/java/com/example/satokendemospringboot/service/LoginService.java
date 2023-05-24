@@ -10,7 +10,7 @@ import com.example.satokendemospringboot.entity.vo.LoginVo;
  * @date 2023-05-23 22:19
  * @description: <p></p>
  */
-public interface LoginService extends IService<User> {
+public interface LoginService {
 
 
     /**

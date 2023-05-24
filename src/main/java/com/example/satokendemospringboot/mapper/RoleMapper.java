@@ -18,9 +18,7 @@ import java.util.Set;
 @Repository
 public interface RoleMapper extends BaseMapper<Role> {
 
-    List<Role> listByUserIdRoles(Long UserId);
-
-    Set<String> getRoles(Long id);
+    Set<Role> getRoles(Long id);
 }
 
 

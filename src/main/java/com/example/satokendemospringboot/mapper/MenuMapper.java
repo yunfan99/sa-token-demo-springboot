@@ -1,11 +1,10 @@
 package com.example.satokendemospringboot.mapper;
 
-import com.example.satokendemospringboot.entity.Permissions;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.satokendemospringboot.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,11 +15,9 @@ import java.util.Set;
 */
 @Mapper
 @Repository
-public interface PermissionsMapper extends BaseMapper<Permissions> {
+public interface MenuMapper extends BaseMapper<Menu> {
 
-    List<Permissions> listByRoleIdPermissions(Long roleId);
-
-    Set<String> getPerms(Long id);
+    Set<Menu> getPerms(Set<Long> ids);
 }
 
 
