@@ -1,5 +1,9 @@
 # sa-token 认证授权（RBAC）
 
+> springboot 3.0.6
+> 
+> java 17
+
 ## 接口调试地址
 > https://console-docs.apipost.cn/preview/d9f190875f4e5e9b/875b7cdec7e72c1a
 
