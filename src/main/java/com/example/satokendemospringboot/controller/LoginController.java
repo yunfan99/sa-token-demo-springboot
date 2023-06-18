@@ -2,14 +2,15 @@ package com.example.satokendemospringboot.controller;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.core.util.StrUtil;
 import com.example.satokendemospringboot.common.R;
 import com.example.satokendemospringboot.common.constants.ResultKeyConstants;
 import com.example.satokendemospringboot.entity.dto.LoginDto;
 import com.example.satokendemospringboot.service.LoginService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 饕餮者也
@@ -31,7 +32,7 @@ public class LoginController {
      */
     @SaIgnore
     @PostMapping("/login")
-    public R login(@RequestBody @Validated LoginDto loginDto) {
+    public R login(@RequestBody LoginDto loginDto) {
 
         return R.ok().put(ResultKeyConstants.LOGIN_INFO, loginService.login(loginDto));
     }
