@@ -1,4 +1,4 @@
-package com.example.satokendemospringboot.redis.config;
+package com.example.satokendemospringboot.config.redis;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
