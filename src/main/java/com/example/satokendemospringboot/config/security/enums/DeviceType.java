@@ -12,7 +12,13 @@ public enum DeviceType {
 
     APP("app");
 
-    DeviceType(String device) {
+    private final String device;
 
+    DeviceType(String device) {
+        this.device = device;
+    }
+
+    public String getDevice() {
+        return device;
     }
 }
