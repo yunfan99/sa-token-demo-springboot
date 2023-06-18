@@ -1,10 +1,10 @@
-package com.example.satokendemospringboot.security.utils;
+package com.example.satokendemospringboot.config.security.utils;
 
 import cn.dev33.satoken.context.SaHolder;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.example.satokendemospringboot.security.domain.LoginUser;
-import com.example.satokendemospringboot.security.enums.DeviceType;
+import com.example.satokendemospringboot.config.security.domain.LoginUser;
+import com.example.satokendemospringboot.config.security.enums.DeviceType;
 
 /**
  * @author 饕餮者也

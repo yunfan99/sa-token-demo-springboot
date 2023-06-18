@@ -1,4 +1,4 @@
-package com.example.satokendemospringboot.security.constants;
+package com.example.satokendemospringboot.config.security.constants;
 
 /**
  * @author 饕餮者也

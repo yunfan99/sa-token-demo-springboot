@@ -1,4 +1,4 @@
-package com.example.satokendemospringboot.security.config;
+package com.example.satokendemospringboot.config.security;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package com.example.satokendemospringboot.security.enums;
+package com.example.satokendemospringboot.config.security.enums;
 
 import lombok.Data;
 

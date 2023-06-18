@@ -1,16 +1,14 @@
-package com.example.satokendemospringboot.security.service;
+package com.example.satokendemospringboot.config.security.service;
 
 import cn.dev33.satoken.stp.StpInterface;
 import com.example.satokendemospringboot.entity.Menu;
 import com.example.satokendemospringboot.entity.Role;
-import com.example.satokendemospringboot.security.domain.LoginUser;
-import com.example.satokendemospringboot.security.utils.SecurityUtils;
+import com.example.satokendemospringboot.config.security.domain.LoginUser;
+import com.example.satokendemospringboot.config.security.utils.SecurityUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author 饕餮者也

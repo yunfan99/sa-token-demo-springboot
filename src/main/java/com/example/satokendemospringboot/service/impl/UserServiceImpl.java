@@ -14,7 +14,7 @@ import com.example.satokendemospringboot.exception.NotNullException;
 import com.example.satokendemospringboot.exception.UsernameExistException;
 import com.example.satokendemospringboot.mapper.UserMapper;
 import com.example.satokendemospringboot.mapper.UserRoleMapper;
-import com.example.satokendemospringboot.security.constants.SecurityConstants;
+import com.example.satokendemospringboot.config.security.constants.SecurityConstants;
 import com.example.satokendemospringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

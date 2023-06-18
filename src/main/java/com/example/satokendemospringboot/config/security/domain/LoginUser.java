@@ -1,4 +1,4 @@
-package com.example.satokendemospringboot.security.domain;
+package com.example.satokendemospringboot.config.security.domain;
 
 import com.example.satokendemospringboot.entity.Menu;
 import com.example.satokendemospringboot.entity.Role;
